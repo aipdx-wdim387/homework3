@@ -2,6 +2,7 @@ app.controller("mainController", function($scope, $http){
  
     $scope.apiKey = "e978908584462f3c08e8d1102f3eed29";
     $scope.results = [];
+    $scope.filterText = null; //for search; input on index will define value
     $scope.init = function() {
         //API requires a start date
         var today = new Date(); //JS function to get today's date

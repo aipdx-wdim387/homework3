@@ -19,12 +19,16 @@
         </div>
     </div>
 	<div class="container main-frame" ng-app="TVPremieresApp" ng-controller="mainController" ng-init="init()"> <!--won't call mainController until after page has loaded-->
-		<div class="search-box row-fluid form-inline"></div>
+		<div class="search-box row-fluid form-inline">
+			<!--search bar; filters out shows that don't match-->
+			<label>Filter: </label>
+			<input type="text" ng-model="filterText"/>
+		</div>
         <div class="results-top"></div>
         <div class="results-container">
             <ul class="episode-list">
             	<!--displays all the gathered tv show info-->
-            	<li ng-repeat="tvshow in results"> <!--repeat structure for each show pulled-->
+            	<li ng-repeat="tvshow in results | filter: filterText"> <!--repeat structure for each show pulled; apply whatever filter used-->
 				    <div class="row-fluid">
 				        <div class="span3">
 				            <img src="{{tvshow.episode.images.screen}}" />
