@@ -24,11 +24,11 @@
         <div class="results-container">
             <ul class="episode-list">
             	<!--displays all the gathered tv show info-->
-            	<li ng-repeat="tvshow in results">
+            	<li ng-repeat="tvshow in results"> <!--repeat structure for each show pulled-->
 				    <div class="row-fluid">
 				        <div class="span3">
 				            <img src="{{tvshow.episode.images.screen}}" />
-				            <div class="ratings"><strong>Ratings:</strong> <span class="label"><i class="icon-thumbs-up"></i> {{tvshow.episode.ratings.loved}}</span> <span class="label"><i class="icon-thumbs-down"></i> {{tvshow.episode.ratings.hated}}</span> <span class="label label-important" ng-class="{'label-success': tvshow.episode.ratings.percentage >= 50}"><strong>%</strong> {{tvshow.episode.ratings.percentage}}</div>
+				            <div class="ratings"><strong>Ratings:</strong> <span class="label"><i class="icon-thumbs-up"></i> {{tvshow.episode.ratings.loved}}</span> <span class="label"><i class="icon-thumbs-down"></i> {{tvshow.episode.ratings.hated}}</span> <span class="label label-important" ng-class="{'label-success': tvshow.episode.ratings.percentage >= 50}"><!--small conditional, add the class if the rating is over 50%--><strong>%</strong> {{tvshow.episode.ratings.percentage}}</div>
 				        </div>
 				        <div class="span6">
 				            <h3>{{tvshow.show.title}}: {{tvshow.episode.title}}</h3>
