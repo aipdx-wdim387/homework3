@@ -20,6 +20,7 @@
     </div>
 	<div class="container main-frame" ng-app="TVPremieresApp" ng-controller="mainController" ng-init="init()">
 		<div class="search-box row-fluid form-inline">
+			<!-- In this section we are defining what is our filters for the data. ng-model is our input filtering by text. ng-options is what filters by dropdown for the different types -->
 			<label>Filter: </label>
 			<input type="text" ng-model="filterText"/>
 			<label>Genre: </label>
@@ -36,10 +37,14 @@
         <div class="results-top"></div>
         <div class="results-container">
             <ul class="episode-list">
+            	<!-- the ng-repeat is what is telling angular that this section is going to loop through the data and output to the screen
+								Also all of the value are filtering and telling it what and how to output the data.
+            -->
             	<li <li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse">
             	    <div class="row-fluid">
             	        <div class="span3">
             	            <img src="{{tvshow.episode.images.screen}}" />
+            	            <!-- Bellow here is where we are out spitting out the variable in the data array. -->
             	            <div class="ratings"><strong>Ratings:</strong> <span class="label"><i class="icon-thumbs-up"></i> {{tvshow.episode.ratings.loved}}</span> <span class="label"><i class="icon-thumbs-down"></i> {{tvshow.episode.ratings.hated}}</span> <span class="label label-important" ng-class="{'label-success': tvshow.episode.ratings.percentage >= 50}"><strong>%</strong> {{tvshow.episode.ratings.percentage}}</div>
             	        </div>
             	        <div class="span6">

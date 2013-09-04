@@ -1,13 +1,24 @@
 app.controller("mainController", function($scope, $http){
+    // Site api key
     $scope.apiKey = "12e84132bb336be90fb8acf1073c7d9d";
+    // Our results object
     $scope.results = [];
+    // The filter text from out input
     $scope.filterText = null;
+    // This is the object that contains all of out genres listed
     $scope.availableGenres = [];
+    // Variable that contains what genres to filter for if any
     $scope.genreFilter = null;
+    // What our fields are for ordering
     $scope.orderFields = ["Air Date", "Rating"];
+    // Which way we would like to have them order
     $scope.orderDirections = ["Descending", "Ascending"];
+    // Our default order field
     $scope.orderField = "Air Date"; //Default order field
+    // Should we reverse the order?
     $scope.orderReverse = false;
+
+    // In our init we run through everything and pull in the data from the API. We also apply and initilize all filters in place.
     $scope.init = function() {
         //API requires a start date
         var today = new Date();
@@ -43,9 +54,11 @@ app.controller("mainController", function($scope, $http){
  
         });
     };
+    // We just set our Genre with this function.
     $scope.setGenreFilter = function(genre) {
         $scope.genreFilter = genre;
     };
+    //Here we have a simple function that uses a switch statement to determine the order by 'Air Date' or 'Rating'
     $scope.customOrder = function(tvshow) {
         switch ($scope.orderField) {
             case "Air Date":
@@ -57,6 +70,7 @@ app.controller("mainController", function($scope, $http){
         }
     };
 });
+// This is where we filter by genre. We cycle through and push the shows that match our requirements. 
 app.filter('isGenre', function() {
     return function(input, genre) {
         if (typeof genre == 'undefined' || genre == null) {
