@@ -1,11 +1,11 @@
 app.controller("mainController", function($scope, $http){
     // Site api key
     $scope.apiKey = "12e84132bb336be90fb8acf1073c7d9d";
-    // Our results object
+    // Our results object // Actually, it's an array, not an object.
     $scope.results = [];
     // The filter text from out input
     $scope.filterText = null;
-    // This is the object that contains all of out genres listed
+    // This is the object that contains all of out genres listed // This is an array, not an object
     $scope.availableGenres = [];
     // Variable that contains what genres to filter for if any
     $scope.genreFilter = null;
@@ -59,6 +59,7 @@ app.controller("mainController", function($scope, $http){
         $scope.genreFilter = genre;
     };
     //Here we have a simple function that uses a switch statement to determine the order by 'Air Date' or 'Rating'
+    // Specifically, this function is passed to the Angular orderBy filter
     $scope.customOrder = function(tvshow) {
         switch ($scope.orderField) {
             case "Air Date":
@@ -71,6 +72,7 @@ app.controller("mainController", function($scope, $http){
     };
 });
 // This is where we filter by genre. We cycle through and push the shows that match our requirements. 
+// By defining this in app.filter(), we make this filter available throughout the app, not just in the scope of a particular controller.
 app.filter('isGenre', function() {
     return function(input, genre) {
         if (typeof genre == 'undefined' || genre == null) {

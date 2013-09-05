@@ -40,10 +40,11 @@
             	<!-- the ng-repeat is what is telling angular that this section is going to loop through the data and output to the screen
 								Also all of the value are filtering and telling it what and how to output the data.
             -->
+            <!-- You have a broken opening <li> tag, followed by the correct <li> tag, on the line below. -->
             	<li <li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse">
             	    <div class="row-fluid">
             	        <div class="span3">
-            	            <img src="{{tvshow.episode.images.screen}}" />
+            	            <img src="{{tvshow.episode.images.screen}}" /><!-- Although the tutorial indicated you should use the 'src' attribute, IMHO 'ng-source' or 'data-ng-source' would be better. No points deducted for this, however. -->
             	            <!-- Bellow here is where we are out spitting out the variable in the data array. -->
             	            <div class="ratings"><strong>Ratings:</strong> <span class="label"><i class="icon-thumbs-up"></i> {{tvshow.episode.ratings.loved}}</span> <span class="label"><i class="icon-thumbs-down"></i> {{tvshow.episode.ratings.hated}}</span> <span class="label label-important" ng-class="{'label-success': tvshow.episode.ratings.percentage >= 50}"><strong>%</strong> {{tvshow.episode.ratings.percentage}}</div>
             	        </div>
