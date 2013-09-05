@@ -5,6 +5,11 @@ app.controller("mainController", function($scope, $http){
     $scope.filterText = null; //for search; input on index will define value; starts with no filter
     $scope.availableGenres = []; //list formed by later function
     $scope.genreFilter = null; //starts with no filter, becomes whichever is selected
+
+    $scope.setGenreFilter = function(genre) { //responds to ng-click in the genres
+        $scope.genreFilter = genre; //updates the genre filter to have the clicked genre selected, which in turn filters the shows to match as usual
+    }
+
     $scope.init = function() {
         //API requires a start date
         var today = new Date(); //JS function to get today's date
