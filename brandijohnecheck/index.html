@@ -29,12 +29,20 @@
 			<select ng-model="genreFilter" ng-options="label for label in availableGenres">
 			    <option value="">All</option>
 			</select>
+
+			<!--display order and by what thing-->
+			<label>Order by: </label>
+			<select ng-model="orderField" ng-options="label for label in orderFields" class="input-medium"></select>
+			<select ng-model="orderReverse"class="input-medium">
+			    <option value="true">Descending</option>
+			    <option value="false">Ascending</option>
+			</select>
 		</div>
         <div class="results-top"></div>
         <div class="results-container">
             <ul class="episode-list">
             	<!--displays all the gathered tv show info-->
-            	<li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter"> <!--repeat structure for each show pulled; apply whatever filter used-->
+            	<li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse"> <!--repeat structure for each show pulled; apply whatever filter used-->
 				    <div class="row-fluid">
 				        <div class="span3">
 				            <img src="{{tvshow.episode.images.screen}}" />

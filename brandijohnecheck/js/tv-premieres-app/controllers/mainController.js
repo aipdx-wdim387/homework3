@@ -1,14 +1,32 @@
 app.controller("mainController", function($scope, $http){
  
     $scope.apiKey = "e978908584462f3c08e8d1102f3eed29";
+
     $scope.results = []; //for search, what to look for
     $scope.filterText = null; //for search; input on index will define value; starts with no filter
+
     $scope.availableGenres = []; //list formed by later function
     $scope.genreFilter = null; //starts with no filter, becomes whichever is selected
+
+    $scope.orderFields = ["Air Date", "Rating"]; //things to sort by
+    $scope.orderDirections = ["Descending", "Ascending"]; //direction to sort
+    $scope.orderField = "Air Date"; //Default order field
+    $scope.orderReverse = false; //default order ascending
 
     $scope.setGenreFilter = function(genre) { //responds to ng-click in the genres
         $scope.genreFilter = genre; //updates the genre filter to have the clicked genre selected, which in turn filters the shows to match as usual
     }
+
+    $scope.customOrder = function(tvshow) {
+        switch ($scope.orderField) {
+            case "Air Date":
+                return tvshow.episode.first_aired;
+                break;
+            case "Rating":
+                return tvshow.episode.ratings.percentage;
+                break;
+        }
+    };
 
     $scope.init = function() {
         //API requires a start date
