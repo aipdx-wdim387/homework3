@@ -40,7 +40,7 @@
             	<!-- the ng-repeat is what is telling angular that this section is going to loop through the data and output to the screen
 								Also all of the value are filtering and telling it what and how to output the data.
             -->
-            	<li <li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse">
+            	<li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter | orderBy:customOrder:orderReverse">
             	    <div class="row-fluid">
             	        <div class="span3">
             	            <img src="{{tvshow.episode.images.screen}}" />
