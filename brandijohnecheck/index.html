@@ -23,6 +23,11 @@
 			<!--search bar; filters out shows that don't match-->
 			<label>Filter: </label>
 			<input type="text" ng-model="filterText"/>
+			<!--filter by genre; ng-options connects it to the list in availableGenres-->
+			<label>Genre: </label>
+			<select ng-model="genreFilter" ng-options="label for label in availableGenres">
+			    <option value="">All</option>
+			</select>
 		</div>
         <div class="results-top"></div>
         <div class="results-container">
