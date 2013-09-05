@@ -23,6 +23,7 @@
 			<!--search bar; filters out shows that don't match-->
 			<label>Filter: </label>
 			<input type="text" ng-model="filterText"/>
+
 			<!--filter by genre; ng-options connects it to the list in availableGenres-->
 			<label>Genre: </label>
 			<select ng-model="genreFilter" ng-options="label for label in availableGenres">
@@ -33,7 +34,7 @@
         <div class="results-container">
             <ul class="episode-list">
             	<!--displays all the gathered tv show info-->
-            	<li ng-repeat="tvshow in results | filter: filterText"> <!--repeat structure for each show pulled; apply whatever filter used-->
+            	<li ng-repeat="tvshow in results | filter: filterText | isGenre:genreFilter"> <!--repeat structure for each show pulled; apply whatever filter used-->
 				    <div class="row-fluid">
 				        <div class="span3">
 				            <img src="{{tvshow.episode.images.screen}}" />
