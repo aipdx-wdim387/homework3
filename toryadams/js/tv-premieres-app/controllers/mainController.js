@@ -20,7 +20,7 @@ app.controller("mainController", function($scope, $http){
     $http.jsonp('http://api.trakt.tv/calendar/premieres.json/' + $scope.apiKey + '/' + apiDate + '/' + 30 + '/?callback=JSON_CALLBACK').success(function(data) {
       // success cb
       angular.forEach(data, function(value, index){
-        // save date outside the for each loop. 
+        // save date outside the for each loop. // DAN: Actually, the issue is that the dates are not attached to individual episodes, but you want to display them that way on your page.
         var date = value.date;
         // loop over episode values
         angular.forEach(value.episodes, function(tvshow, index){
@@ -28,7 +28,7 @@ app.controller("mainController", function($scope, $http){
           tvshow.date = date;
           //push into array
           $scope.results.push(tvshow);
-          //filter by genres
+          //filter by genres // DAN: We aren't filtering by Genres here, we are creating our list of available genres, which we are using to populate the filter.
           angular.forEach(tvshow.show.genres, function(genre, index){
             //save to array genre
             var exists = false;
@@ -50,7 +50,7 @@ app.controller("mainController", function($scope, $http){
 
   $scope.setGenreFilter = function(genre) {
     $scope.genreFilter = genre;
-  }
+  }; // DAN: Added semicolon
 
   $scope.customOrder = function(tvshow) {
     switch ($scope.orderField) {
@@ -72,8 +72,8 @@ app.filter('isGenre', function() {
     } else {
       var out = [];
       // compare genre to the passed value
-      for (var a = 0; a < input.length; a++){
-        for (var b = 0; b < input[a].show.genres.length; b++){
+      for (var a = 0; a < input.length; a++){ // DAN: For efficiency, consider writing this as: for (var a = 0, len = input.length; a < len; a++) {
+        for (var b = 0; b < input[a].show.genres.length; b++){ // DAN: For efficiency, consider writing this as: for (var b = 0, genreLength = input[a].show.genres.length; b < genreLength; b++) {
           if(input[a].show.genres[b] == genre) {
             out.push(input[a]);
           }
