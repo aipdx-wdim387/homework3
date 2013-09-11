@@ -21,6 +21,7 @@
 	<div class="container main-frame" ng-app="TVPremieresApp" ng-controller="mainController" ng-init="init()">
 		<div class="search-box row-fluid form-inline">
 			<!-- OMG a light just went on (and I made my BF laugh when I explained it) - we name the filter what we want and tie it to the input with the model -->
+      <!-- DAN: In this case we are actually creating a model named 'filterText', and the data in that model is used by a filter. -->
 			<label>Filter: </label>
 			<input type='text' ng-model='filterText' />
 			<!-- next we're adding a different filter to be able to pull genre's from the data - we make the name of the model variable 'genreFilter' and then tie it in to the data via the 'availableGenres' array we created in our controller js file -->
