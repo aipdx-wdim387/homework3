@@ -18,7 +18,7 @@ app.controller("mainController", function($scope, $http){
             //For each day get all the episodes
             angular.forEach(data, function(value, index){
                 //The API stores the full date separately from each episode. Save it so we can use it later
-                //SL:  Since we are using an API and one of the parameters needed is your own API so we simply pass that through.
+                //SL:  Since we are using an API and one of the parameters needed is your own API so we simply pass that through. // DAN: I am not sure what you are saying here...do you mean the API key is needed? That is passed in several lines before here.
                 //SL: We also need to pass a start date and the number of days needed.
                 var date = value.date;
                 //For each episodes add it to the results array
@@ -50,7 +50,7 @@ app.controller("mainController", function($scope, $http){
     };
     $scope.setGenreFilter = function(genre) {
         $scope.genreFilter = genre;
-    }
+    }; // DAN: Added semicolon
     $scope.customOrder = function(tvshow) {
         switch ($scope.orderField) {
             case "Air Date":
@@ -69,8 +69,8 @@ app.filter('isGenre', function() {
             return input;
         } else {
             var out = [];
-            for (var a = 0; a < input.length; a++){
-                for (var b = 0; b < input[a].show.genres.length; b++){
+            for (var a = 0; a < input.length; a++){ // DAN: This could also be written (as a more efficient option): for (var a = 0, len = input.length; a < len; a++) {
+                for (var b = 0; b < input[a].show.genres.length; b++){ // DAN: This could also be written: for (var b = 0, genreLength = input[a].show.genres.length; b < genreLength; b++) {
                     if(input[a].show.genres[b] == genre) {
                         out.push(input[a]);
                     }
