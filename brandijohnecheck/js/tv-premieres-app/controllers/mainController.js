@@ -2,7 +2,7 @@ app.controller("mainController", function($scope, $http){
  
     $scope.apiKey = "e978908584462f3c08e8d1102f3eed29";
 
-    $scope.results = []; //for search, what to look for
+    $scope.results = []; //for search, what to look for // DAN: Maybe a better way of saying this is that it is the set of all content available for searching. It is the results of the API request.
     $scope.filterText = null; //for search; input on index will define value; starts with no filter
 
     $scope.availableGenres = []; //list formed by later function
@@ -40,7 +40,7 @@ app.controller("mainController", function($scope, $http){
                 //The API stores the full date separately from each episode. Save it so we can use it later
                 var date = value.date;
                 //For each episodes, add it to the results array
-                angular.forEach(value.episodes, function(tvshow, index){ //each list of episodes, to imply a show?
+                angular.forEach(value.episodes, function(tvshow, index){ //each list of episodes, to imply a show? // DAN: Each episode is run through this function. The episode is being called 'tvshow' within this function.
                     //Create a date string from the timestamp so we can filter on it based on user text input
                     tvshow.date = date; //Attach the full date to each episode; from previously pulled value.date
                     $scope.results.push(tvshow); //add the show to the results list
@@ -71,8 +71,8 @@ app.filter('isGenre', function() { //check each tv show for a genre match
             return input;
         } else {
             var out = [];
-            for (var a = 0; a < input.length; a++){
-                for (var b = 0; b < input[a].show.genres.length; b++){
+            for (var a = 0; a < input.length; a++){ // DAN: Also consider writing the loop this way for efficiency: for (var a = 0, len = input.length; a < len; a++) {
+                for (var b = 0; b < input[a].show.genres.length; b++){ // DAN: Also consider writing the loop this way for efficiency: for (var b = 0, genreLength = input[a].show.genres.length; b < genreLength; b++) {
                     if(input[a].show.genres[b] == genre) {
                         out.push(input[a]);
                     }
